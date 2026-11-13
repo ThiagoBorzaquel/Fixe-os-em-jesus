@@ -75,7 +75,7 @@
       blocoVersiculo(d.versiculo),
       blocoCompartilhar('Compartilhar versículo', '“' + d.versiculo.texto + '” — ' + d.versiculo.referencia, urlCompartilhar),
       el('h3', {}, 'Reflexão'),
-      d.reflexao.map(p => el('p', {}, p)),
+      ...d.reflexao.map(p => el('p', {}, p)),
       el('h3', {}, 'Aplicação prática'),
       el('p', {}, d.aplicacao),
       el('p', { class: 'encorajamento' }, d.encorajamento),
@@ -118,7 +118,7 @@
       alvo.replaceChildren(
         el('p', { class: 'categoria' }, o.categoria),
         el('h1', { class: 'devo-titulo' }, o.titulo),
-        o.texto.split('\n').map(p => el('p', { class: 'oracao-texto' }, p)),
+        ...o.texto.split('\n').map(p => el('p', { class: 'oracao-texto' }, p)),
         el('h3', {}, 'Passagem para ler'),
         el('p', {}, o.passagem),
         el('h3', {}, 'Versículo para meditação'),
