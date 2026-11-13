@@ -63,8 +63,8 @@ label{margin-right:.4rem}
 .lista-datas button:hover,.lista-datas button[aria-current="true"]{background:var(--superficie)}
 .lista-datas button:focus-visible{outline:3px solid var(--ouro)}
 .lista-datas small{display:block;color:var(--suave)}
-.rodape{text-align:center;padding:2rem 1.25rem 3rem;color:var(--suave);font-size:.95rem;border-top:1px solid var(--linha);max-width:40rem;margin:0 auto}
-.rodape p{margin:.25rem 0}
+/* Rodapé refinado / Easter egg sutil */
+.rodape small{display:block;margin-top:.4rem;color:var(--suave);font-size:.85rem}
 
 /* Entrada única de destaque: o título aparece suavemente ao carregar */
 @media (prefers-reduced-motion:no-preference){
