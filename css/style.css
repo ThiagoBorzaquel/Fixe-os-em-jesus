@@ -64,6 +64,7 @@ label{margin-right:.4rem}
 .lista-datas button:focus-visible{outline:3px solid var(--ouro)}
 .lista-datas small{display:block;color:var(--suave)}
 /* Rodapé refinado / Easter egg sutil */
+.rodape{text-align:center}
 .rodape small{display:block;margin-top:.4rem;color:var(--suave);font-size:.85rem}
 
 /* Entrada única de destaque: o título aparece suavemente ao carregar */
