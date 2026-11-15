@@ -1,0 +1,35 @@
+name: Atualizar devocional diário
+
+on:
+  schedule:
+    # 08:00 UTC = 05:00 em Brasília (UTC-3, sem horário de verão)
+    - cron: "0 8 * * *"
+  workflow_dispatch:
+  push:
+    paths:
+      - "devocional/**"
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validar conteúdo
+        run: python scripts/validar.py
+
+      - name: Atualizar devocional
+        run: python scripts/atualizar.py
+
+      - name: Commit e push
+        run: |
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add devocional/ --force
+          git commit -m "Atualização automática do devocional"
+          git push
