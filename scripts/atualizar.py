@@ -8,10 +8,11 @@ gravados no final (de forma atômica). Se algo falhar, o último conteúdo
 publicado permanece intacto e o site continua funcionando.
 """
 import argparse, json, os, re, sys, tempfile
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from pathlib import Path
 from urllib.parse import urlparse
-from zoneinfo import ZoneInfo
+
+BRASILIA = timezone(timedelta(hours=-3))
 
 RAIZ = Path(__file__).resolve().parent.parent
 DATA = RAIZ / "data"
@@ -78,7 +79,7 @@ def aplicar_site_url(novo, cfg):
     """Troca a URL base nos HTML, regenera sitemap.xml e robots.txt."""
     novo = novo.rstrip("/") + "/"
     antigo = cfg["site_url"].rstrip("/") + "/"
-    hoje = datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat()
+    hoje = datetime.now(BRASILIA).date().isoformat()
     saidas = {}
     for arq in RAIZ.rglob("*.html"):
         if ".git" in arq.parts:
@@ -114,7 +115,7 @@ def main():
         print(f"OK: {len(pool)} devocionais e orações válidos.")
         return
 
-    agora = datetime.now(ZoneInfo("America/Sao_Paulo"))
+    agora = datetime.now(BRASILIA)
     data_iso = args.data or agora.date().isoformat()
     datetime.fromisoformat(data_iso)  # valida o formato
 
