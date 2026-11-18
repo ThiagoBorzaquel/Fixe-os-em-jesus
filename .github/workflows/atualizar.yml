@@ -7,6 +7,7 @@ on:
   workflow_dispatch:
   push:
     paths:
+      - ".github/workflows/atualizar.yml"
       - "data/devocionais.json"
       - "data/oracoes.json"
       - "scripts/atualizar.py"
