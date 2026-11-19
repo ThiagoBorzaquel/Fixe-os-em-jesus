@@ -22,7 +22,8 @@
   async function carregarJSON(caminho) {
     const chave = 'fixe:' + caminho;
     try {
-      const r = await fetch(RAIZ + caminho, { cache: 'no-cache' });
+      const separador = caminho.includes('?') ? '&' : '?';
+      const r = await fetch(RAIZ + caminho + separador + 'v=' + Date.now(), { cache: 'no-store' });
       if (!r.ok) throw new Error(r.status);
       const dados = await r.json();
       try { localStorage.setItem(chave, JSON.stringify(dados)); } catch (_) {}
